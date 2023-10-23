@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, ipcMain, BrowserWindow } from 'electron'
 import path from 'path'
 import os from 'os'
 
@@ -7,14 +7,14 @@ const platform = process.platform || os.platform()
 
 let mainWindow
 
-async function createWindow () {
+async function createWindow() {
   /**
    * Initial window options
    */
   mainWindow = new BrowserWindow({
     icon: path.resolve(__dirname, 'icons/icon.png'), // tray icon
-    width: 1000,
-    height: 600,
+    width: 720,
+    height: 480,
     useContentSize: true,
     webPreferences: {
       contextIsolation: true,
@@ -39,7 +39,18 @@ async function createWindow () {
   console.log(JSON.stringify(bit))
 
 
+  // IPC listener
+  ipcMain.on('electron-store-get', async (event, val) => {
+    event.returnValue = 'bass tone singers';
+  });
+  ipcMain.on('electron-store-set', async (event, key, val) => {
+    store.set('alligator', 0);
+  });
+
+
   mainWindow.loadURL(process.env.APP_URL)
+
+  mainWindow.setPosition( -720, 1920 )
 
   if (process.env.DEBUGGING) {
     // if on DEV or Production with debug enabled
