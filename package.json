@@ -13,7 +13,10 @@
   "dependencies": {
     "@quasar/extras": "^1.16.4",
     "chance": "^1.1.11",
+    "dot": "^1.1.3",
     "electron-store": "^8.1.0",
+    "h3-js": "^3.7.2",
+    "honeycomb-grid": "^3.1.8",
     "pinia": "^2.0.11",
     "quasar": "^2.6.0",
     "rx-lite": "^4.0.8",
@@ -21,9 +24,7 @@
     "typescript-ioc": "^3.2.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0",
-    "h3-js": "^3.7.2",
-    "honeycomb-grid": "^3.1.8",
-    "dot": "^1.1.3"
+    "xterm": "^5.3.0"
   },
   "devDependencies": {
     "@quasar/app-vite": "^1.3.0",
