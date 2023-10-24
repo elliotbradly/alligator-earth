@@ -46,10 +46,16 @@ async function createWindow() {
   console.log(JSON.stringify(bit))
 
 
+  const TIME = require('../003.time/index.js')
+  const ActTme = require('../003.time/00.time.unit/time.action')
+
+  bit = await TIME.hunt(ActTme.INIT_TIME, { val: 0 })
+  console.log(JSON.stringify(bit))
+
   // IPC listener
   ipcMain.on('electron-store-get', async (event, val) => {
 
-    bit = await SPACE.hunt( ActSpc.INIT_SPACE, { val: 0 })
+    bit = await TIME.hunt( ActTme.INIT_TIME, { val: 0 })
     event.returnValue = JSON.stringify(bit);
 
   });

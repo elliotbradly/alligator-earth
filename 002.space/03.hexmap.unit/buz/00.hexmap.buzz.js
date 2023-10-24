@@ -4,8 +4,9 @@ exports.selectHexmap = exports.seekHexmap = exports.replaceHexmap = exports.name
 const ActMap = require("../hexmap.action");
 const ActFoc = require("../../01.focus.unit/focus.action");
 const ActCol = require("../../97.collect.unit/collect.action");
-const ActDsk = require("../../act/disk.action");
+
 var bit, idx, lst, dat, val, src;
+
 const initHexmap = (cpy, bal, ste) => {
     var lst = [ActMap.OPEN_HEXMAP];
     bal.slv({ intBit: { idx: "init-focus", lst } });

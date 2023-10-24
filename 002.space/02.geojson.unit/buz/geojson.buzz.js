@@ -1,8 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.indexGeojson = exports.loadGeojson = exports.updateGeojson = exports.initGeojson = void 0;
-const ActDsk = require("../../act/disk.action");
+
+
 var bit, val, idx, dex, lst, dat, src;
+
 const initGeojson = (cpy, bal, ste) => {
     debugger;
     return cpy;
