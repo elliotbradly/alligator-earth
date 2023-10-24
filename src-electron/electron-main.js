@@ -13,7 +13,7 @@ async function createWindow () {
    */
   mainWindow = new BrowserWindow({
     icon: path.resolve(__dirname, 'icons/icon.png'), // tray icon
-    width: 1000,
+    width: 600,
     height: 600,
     useContentSize: true,
     webPreferences: {
@@ -22,6 +22,9 @@ async function createWindow () {
       preload: path.resolve(__dirname, process.env.QUASAR_ELECTRON_PRELOAD)
     }
   })
+
+
+  mainWindow.setPosition(-600, 1800);
 
 
   console.log("beginning...")
