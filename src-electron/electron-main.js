@@ -7,7 +7,7 @@ const platform = process.platform || os.platform()
 
 let mainWindow
 
-async function createWindow () {
+async function createWindow() {
   /**
    * Initial window options
    */
@@ -23,16 +23,14 @@ async function createWindow () {
     }
   })
 
-
   mainWindow.setPosition(-600, 1800);
-
 
   console.log("beginning...")
 
   const STORE = require('../001.store/index.js')
   const ActStr = require('../001.store/00.store.unit/store.action')
 
-  let bit = await STORE.hunt(ActStr.INIT_STORE, { val: 0 })
+  var bit = await STORE.hunt(ActStr.INIT_STORE, { val: 0 })
   console.log(JSON.stringify(bit))
 
   bit = await STORE.hunt(ActStr.WRITE_STORE, { val: 0 })
@@ -41,13 +39,18 @@ async function createWindow () {
   bit = await STORE.hunt(ActStr.READ_STORE, { val: 0 })
   console.log(JSON.stringify(bit))
 
+  const SPACE = require('../002.space/index.js')
+  const ActSpc = require('../002.space/00.space.unit/space.action')
+
+  bit = await SPACE.hunt(ActSpc.INIT_SPACE, { val: 0 })
+  console.log(JSON.stringify(bit))
 
 
   // IPC listener
   ipcMain.on('electron-store-get', async (event, val) => {
 
-    bit = await STORE.hunt(ActStr.READ_STORE, { val: 0 })
-    event.returnValue = JSON.stringify( bit ) ;
+    bit = await SPACE.hunt( ActSpc.INIT_SPACE, { val: 0 })
+    event.returnValue = JSON.stringify(bit);
 
   });
   ipcMain.on('electron-store-set', async (event, key, val) => {
