@@ -48,9 +48,9 @@ async function createWindow() {
   });
 
 
-  mainWindow.loadURL(process.env.APP_URL)
+  mainWindow.loadURL(process.env.APP_URL + '/index')
 
-  mainWindow.setPosition( -720, 1920 )
+  mainWindow.setPosition( 800, 300 )
 
   if (process.env.DEBUGGING) {
     // if on DEV or Production with debug enabled
