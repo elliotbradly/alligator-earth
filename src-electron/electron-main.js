@@ -7,14 +7,14 @@ const platform = process.platform || os.platform()
 
 let mainWindow
 
-async function createWindow() {
+async function createWindow () {
   /**
    * Initial window options
    */
   mainWindow = new BrowserWindow({
     icon: path.resolve(__dirname, 'icons/icon.png'), // tray icon
-    width: 720,
-    height: 480,
+    width: 1000,
+    height: 600,
     useContentSize: true,
     webPreferences: {
       contextIsolation: true,
@@ -39,18 +39,20 @@ async function createWindow() {
   console.log(JSON.stringify(bit))
 
 
+
   // IPC listener
   ipcMain.on('electron-store-get', async (event, val) => {
-    event.returnValue = 'bass tone singers';
+
+    bit = await STORE.hunt(ActStr.READ_STORE, { val: 0 })
+    event.returnValue = JSON.stringify( bit ) ;
+
   });
   ipcMain.on('electron-store-set', async (event, key, val) => {
     store.set('alligator', 0);
   });
 
 
-  mainWindow.loadURL(process.env.APP_URL + '/index')
-
-  mainWindow.setPosition( 800, 300 )
+  mainWindow.loadURL(process.env.APP_URL)
 
   if (process.env.DEBUGGING) {
     // if on DEV or Production with debug enabled

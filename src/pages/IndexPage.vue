@@ -1,29 +1,60 @@
 <template>
-  <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-vertical.svg" style="width: 200px; height: 200px">
-  </q-page>
+  <canvas id="indexCanvas"> </canvas>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { defineComponent } from 'vue'
+import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
 
-const el = ref()
+const instance = getCurrentInstance();
+const SHADE = inject('SHADE')
 
-onMounted(() => {
-  el.value // <div>
-  router.push('/title')
+onMounted(async () => {
+
+
+  var bit = await SHADE.hunt(SHADE.ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { height: 720 } });
+  instance?.proxy?.$forceUpdate();
+
+  alert(window.electron.store.get('foo'));
+
+
 })
+
+onUpdated(async () => {
+  // text content should be the same as current `count.value`
+
+  var bit = await SHADE.hunt(SHADE.ActVsg.REMOVE_VISAGE, { idx: "vsg00" })
+  bit = await SHADE.hunt(SHADE.ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { height: 720 } })
+
+  bit = await SHADE.hunt(SHADE.ActVsg.READ_VISAGE, { idx: "vsg00" })
+
+  bit = await SHADE.hunt(SHADE.ActCan.WRITE_CONTAINER, { idx: "can00", src: 'vsg00' })
+  bit = await SHADE.hunt(SHADE.ActCan.SURFACE_CONTAINER, { idx: 'fce-can-00', src: "vsg00" });
+
+
+})
+
+onUnmounted(async () => {
+
+  console.log("unmounted..")
+  var bit = await SHADE.hunt(SHADE.ActVsg.REMOVE_VISAGE, { idx: "vsg00" })
+
+})
+
+
+
+
 </script>
+
+
 
 <script>
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'IndexPage',
+  name: 'IndexPage'
 })
 </script>

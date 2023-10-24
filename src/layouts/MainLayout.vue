@@ -101,18 +101,7 @@ export default defineComponent({
     EssentialLink
   },
 
-  mounted() {
-    console.log('mounted') // 0
-  },
-
-  unmounted() {
-    console.log('unmounted') // 0
-  },
-
-
   setup () {
-
-
     const leftDrawerOpen = ref(false)
 
     return {
