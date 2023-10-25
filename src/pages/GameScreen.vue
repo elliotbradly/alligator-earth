@@ -1,8 +1,25 @@
 <template>
+
+<q-page-sticky position="top-left" :offset="[18, 18]">
+
+  <q-fab color="secondary" push icon="keyboard_arrow_right" direction="right">
+        <q-fab-action color="primary" @click="onClick" icon="mail" />
+        <q-fab-action color="accent" @click="onClick" icon="alarm" />
+      </q-fab>
+
+          </q-page-sticky>
+
+
+
   <div class="full-height row wrap justify-start items-start content-start">
+
+
 
     <div class="col-6">
       <canvas id="indexCanvas"> </canvas>
+
+
+
     </div>
 
     <div class="col-6">
