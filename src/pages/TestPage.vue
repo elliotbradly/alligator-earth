@@ -1,23 +1,5 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
 
     <q-drawer
       v-model="leftDrawerOpen"
@@ -26,19 +8,33 @@
       overlay
       side="right"
     >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
+    <q-list bordered separator>
+      <q-item clickable v-ripple :active="active">
+        <q-item-section avatar>
+          <q-icon name="signal_wifi_off" />
+        </q-item-section>
+        <q-item-section>Active</q-item-section>
+        <q-item-section side>Side</q-item-section>
+      </q-item>
+
+      <q-item clickable v-ripple :active="active" active-class="text-orange">
+        <q-item-section avatar>
+          <q-icon name="signal_wifi_off" />
+        </q-item-section>
+        <q-item-section>Active, Active class</q-item-section>
+        <q-item-section side>Side</q-item-section>
+      </q-item>
+
+      <q-item clickable v-ripple :active="active" active-class="bg-teal-1 text-grey-8">
+        <q-item-section avatar>
+          <q-icon name="signal_wifi_off" />
+        </q-item-section>
+        <q-item-section>Active, Active class</q-item-section>
+        <q-item-section side>Side</q-item-section>
+      </q-item>
+    </q-list>
+
     </q-drawer>
 
     <q-drawer
@@ -48,19 +44,32 @@
       overlay
       side="left"
     >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
+    <q-list bordered separator>
+      <q-item clickable v-ripple :active="active">
+        <q-item-section avatar>
+          <q-icon name="signal_wifi_off" />
+        </q-item-section>
+        <q-item-section>Active</q-item-section>
+        <q-item-section side>Side</q-item-section>
+      </q-item>
+
+      <q-item clickable v-ripple :active="active" active-class="text-orange">
+        <q-item-section avatar>
+          <q-icon name="signal_wifi_off" />
+        </q-item-section>
+        <q-item-section>Active, Active class</q-item-section>
+        <q-item-section side>Side</q-item-section>
+      </q-item>
+
+      <q-item clickable v-ripple :active="active" active-class="bg-teal-1 text-grey-8">
+        <q-item-section avatar>
+          <q-icon name="signal_wifi_off" />
+        </q-item-section>
+        <q-item-section>Active, Active class</q-item-section>
+        <q-item-section side>Side</q-item-section>
+      </q-item>
+    </q-list>
     </q-drawer>
 
 
