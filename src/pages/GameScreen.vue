@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-6">
-      .col
+      <div id="terminal"></div>
     </div>
 
 
@@ -18,6 +18,8 @@
 import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
+import { Terminal } from 'xterm';
+
 const router = useRouter()
 const route = useRoute()
 
@@ -25,6 +27,20 @@ const instance = getCurrentInstance();
 const SHADE = inject('SHADE')
 
 onMounted(async () => {
+
+
+  var term = new Terminal();
+  term.open(document.getElementById('terminal'));
+
+  term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
+  term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
+  term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
+
+  term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
+
+  term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
+
+  term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
 
   var bit = await SHADE.hunt(SHADE.ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { height: 920 } });
   instance?.proxy?.$forceUpdate();
