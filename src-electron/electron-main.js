@@ -25,7 +25,13 @@ async function createWindow() {
 
   //mainWindow.setPosition(-600, 1800);
 
-  console.log("beginning...")
+  console.log("in the beginning...")
+
+  const GAME = require('../000.game/index.js')
+  const ActGme = require('../000.game/00.game.unit/game.action')
+
+  var bit = await GAME.hunt(ActGme.INIT_GAME, { val: 0 })
+  console.log(JSON.stringify(bit))
 
   const STORE = require('../001.store/index.js')
   const ActStr = require('../001.store/00.store.unit/store.action')
