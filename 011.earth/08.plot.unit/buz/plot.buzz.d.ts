@@ -1,0 +1,10 @@
+export declare const initPlot: (cpy: PlotModel, bal: PlotBit, ste: State) => PlotModel;
+export declare const openPlot: (cpy: PlotModel, bal: PlotBit, ste: State) => Promise<PlotModel>;
+export declare const updatePlot: (cpy: PlotModel, bal: PlotBit, ste: State) => PlotModel;
+export declare const pushPlot: (cpy: PlotModel, bal: PlotBit, ste: State) => PlotModel;
+export declare const readPlot: (cpy: PlotModel, bal: PlotBit, ste: State) => Promise<PlotModel>;
+export declare const writePlot: (cpy: PlotModel, bal: PlotBit, ste: State) => Promise<PlotModel>;
+export declare const createPlot: (cpy: PlotModel, bal: PlotBit, ste: State) => PlotModel;
+import { PlotModel } from "../plot.model";
+import PlotBit from "../fce/plot.bit";
+import State from "../../99.core/state";

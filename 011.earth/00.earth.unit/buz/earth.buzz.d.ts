@@ -1,0 +1,11 @@
+export declare const initEarth: (cpy: EarthModel, bal: EarthBit, ste: State) => Promise<EarthModel>;
+export declare const updateEarth: (cpy: EarthModel, bal: EarthBit, ste: State) => Promise<EarthModel>;
+export declare const openEarth: (cpy: EarthModel, bal: EarthBit, ste: State) => Promise<EarthModel>;
+export declare const readEarth: (cpy: EarthModel, bal: EarthBit, ste: State) => Promise<EarthModel>;
+export declare const writeEarth: (cpy: EarthModel, bal: EarthBit, ste: State) => Promise<EarthModel>;
+export declare const pushEarth: (cpy: EarthModel, bal: EarthBit, ste: State) => Promise<EarthModel>;
+export declare const createEarth: (cpy: EarthModel, bal: EarthBit, ste: State) => Promise<EarthModel>;
+export declare const autoEarth: (cpy: EarthModel, bal: EarthBit, ste: State) => Promise<EarthModel>;
+import { EarthModel } from "../earth.model";
+import EarthBit from "../fce/earth.bit";
+import State from "../../99.core/state";

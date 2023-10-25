@@ -1,0 +1,16 @@
+export declare const CLINIC: string;
+export declare const CORINTH: string;
+export declare const HEXAGON: string;
+export declare const GARDEN: string;
+export declare const TOWER: string;
+export declare const MEMORIAL: string;
+export declare const HEIRLOOM: string;
+export declare const LIBRARY: string;
+export declare const PORT: string;
+export declare const MOAT: string;
+export declare const CROWN: string;
+export declare const KEEP: string;
+export declare const STUDIO: string;
+export declare const PATH: string;
+export declare const CHURCH: string;
+export declare const THEATRE: string;

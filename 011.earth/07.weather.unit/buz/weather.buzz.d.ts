@@ -1,0 +1,13 @@
+export declare const initWeather: (cpy: WeatherModel, bal: WeatherPivotBit, ste: State) => Promise<WeatherModel>;
+export declare const updateWeather: (cpy: WeatherModel, bal: WeatherPivotBit, ste: State) => WeatherModel;
+export declare const processWeather: (cpy: WeatherModel, bal: WeatherPivotBit, ste: State) => Promise<void>;
+export declare const processWeatherBeam: (cpy: WeatherModel, bal: WeatherPivotBit, ste: State) => Promise<WeatherModel>;
+export declare const processWeatherYear: (cpy: WeatherModel, bal: WeatherPivotBit, ste: State) => Promise<void>;
+export declare const processWeatherDay: (cpy: WeatherModel, bal: WeatherPivotBit, ste: State) => Promise<void>;
+export declare const processWeatherHour: (cpy: WeatherModel, bal: WeatherPivotBit, ste: State) => Promise<void>;
+export declare const readWeather: (cpy: WeatherModel, bal: WeatherPivotBit, ste: State) => WeatherModel;
+export declare const setWorkingWeather: (cpy: WeatherModel, bal: WeatherPivotBit, ste: State) => WeatherModel;
+export declare const listWeather: (cpy: WeatherModel, bal: WeatherPivotBit, ste: State) => Promise<WeatherModel>;
+import { WeatherModel } from "../weather.model";
+import WeatherPivotBit from "../fce/weather-pivot.bit";
+import State from "../../99.core/state";

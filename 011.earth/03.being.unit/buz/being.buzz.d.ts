@@ -1,0 +1,13 @@
+export declare const initBeing: (cpy: BeingModel, bal: BeingBit, ste: State) => Promise<BeingModel>;
+export declare const accessBeing: (cpy: BeingModel, bal: BeingBit, ste: State) => Promise<BeingModel>;
+export declare const updateBeing: (cpy: BeingModel, bal: BeingBit, ste: State) => BeingModel;
+export declare const createBeing: (cpy: BeingModel, bal: BeingBit, ste: State) => Promise<BeingModel>;
+export declare const writeBeing: (cpy: BeingModel, bal: BeingBit, ste: State) => Promise<BeingModel>;
+export declare const readBeing: (cpy: BeingModel, bal: BeingBit, ste: State) => BeingModel;
+export declare const ageBeing: (cpy: BeingModel, bal: BeingBit, ste: State) => Promise<BeingModel>;
+export declare const advanceBeing: (cpy: BeingModel, bal: BeingBit, ste: State) => Promise<BeingModel>;
+export declare const loadBeing: (cpy: BeingModel, bal: BeingBit, ste: State) => Promise<BeingModel>;
+export declare const openBeing: (cpy: BeingModel, bal: BeingBit, ste: State) => BeingModel;
+import { BeingModel } from "../being.model";
+import BeingBit from "../fce/being-pivot.bit";
+import State from "../../99.core/state";

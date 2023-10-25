@@ -1,0 +1,11 @@
+export declare const initColor: (cpy: ColorModel, bal: ColorBit, ste: State) => Promise<ColorModel>;
+export declare const updateColor: (cpy: ColorModel, bal: ColorBit, ste: State) => ColorModel;
+export declare const readColor: (cpy: ColorModel, bal: ColorBit, ste: State) => void;
+export declare const matchColor: (cpy: ColorModel, bal: ColorBit, ste: State) => Promise<void>;
+export declare const degreeColor: (cpy: ColorModel, bal: ColorBit, ste: State) => Promise<void>;
+export declare const selectColor: (cpy: ColorModel, bal: ColorBit, ste: State) => Promise<void>;
+export declare const fetchColor: (cpy: ColorModel, bal: ColorBit, ste: State) => Promise<void>;
+export declare const listColor: (cpy: ColorModel, bal: ColorBit, ste: State) => ColorModel;
+import { ColorModel } from "../color.model";
+import ColorBit from "../fce/color.bit";
+import State from "../../99.core/state";
