@@ -20,7 +20,6 @@ onMounted(async () => {
   var term = new Terminal();
   term.open(document.getElementById('terminal'));
 
-
   term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
   term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
   term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
@@ -31,9 +30,18 @@ onMounted(async () => {
 
   term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
 
+  setTimeout( ()=>{
 
-  //var bit = await SHADE.hunt(SHADE.ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { height: 720 } });
-  //instance?.proxy?.$forceUpdate();
+
+    router.push('./gameScreen');
+
+
+
+  }, 444)
+
+
+  var bit = await SHADE.hunt(SHADE.ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { height: 720 } });
+  instance?.proxy?.$forceUpdate();
 
   //alert(window.electron.store.get('foo'));
 

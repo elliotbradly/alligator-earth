@@ -10,7 +10,7 @@ const routes = [
 
   {
     path: '/gameScreen',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('layouts/SimpleLayout.vue'),
     children: [
       { path: '', component: () => import('pages/GameScreen.vue') }
     ]

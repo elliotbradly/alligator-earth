@@ -23,7 +23,7 @@ async function createWindow() {
     }
   })
 
-  mainWindow.setPosition(-600, 1800);
+  //mainWindow.setPosition(-600, 1800);
 
   console.log("beginning...")
 

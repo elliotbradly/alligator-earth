@@ -1,5 +1,17 @@
 <template>
-  <canvas id="indexCanvas"> </canvas>
+  <div class="full-height row wrap justify-start items-start content-start">
+
+    <div class="col-6">
+      <canvas id="indexCanvas"> </canvas>
+    </div>
+
+    <div class="col-6">
+      .col
+    </div>
+
+
+</div>
+
 </template>
 
 <script setup>
@@ -14,10 +26,10 @@ const SHADE = inject('SHADE')
 
 onMounted(async () => {
 
-  var bit = await SHADE.hunt(SHADE.ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { height: 120 } });
+  var bit = await SHADE.hunt(SHADE.ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { height: 920 } });
   instance?.proxy?.$forceUpdate();
 
-  alert(window.electron.store.get('foo'));
+  //alert(window.electron.store.get('foo'));
 })
 
 onUpdated(async () => {
@@ -35,17 +47,13 @@ onUpdated(async () => {
 
 onUnmounted(async () => {
 
-  console.log("unmounted..")
-  var bit = await SHADE.hunt(SHADE.ActVsg.REMOVE_VISAGE, { idx: "vsg00" })
+  //console.log("unmounted..")
+  //var bit = await SHADE.hunt(SHADE.ActVsg.REMOVE_VISAGE, { idx: "vsg00" })
 
 })
 
 
-
-
 </script>
-
-
 
 <script>
 import { defineComponent } from 'vue'
