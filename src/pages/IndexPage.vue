@@ -30,14 +30,7 @@ onMounted(async () => {
 
   term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
 
-  setTimeout( ()=>{
 
-
-    router.push('./gameScreen');
-
-
-
-  }, 444)
 
 
   var bit = await SHADE.hunt(SHADE.ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { height: 720 } });
@@ -60,7 +53,7 @@ onUpdated(async () => {
   bit = await SHADE.hunt(SHADE.ActCan.SURFACE_CONTAINER, { idx: 'fce-can-00', src: "vsg00" });
 
 
-  router.push('./gameScreen')
+  router.push('./gameTest')
 
 
 })

@@ -24,6 +24,7 @@
       show-if-above
       bordered
       overlay
+      side="right"
     >
       <q-list>
         <q-item-label
@@ -40,6 +41,27 @@
       </q-list>
     </q-drawer>
 
+    <q-drawer
+      v-model="rightDrawerOpen"
+      show-if-above
+      bordered
+      overlay
+      side="left"
+    >
+      <q-list>
+        <q-item-label
+          header
+        >
+          Essential Links
+        </q-item-label>
+
+        <EssentialLink
+          v-for="link in essentialLinks"
+          :key="link.title"
+          v-bind="link"
+        />
+      </q-list>
+    </q-drawer>
 
 
     <q-page-container>
@@ -106,12 +128,17 @@ export default defineComponent({
 
   setup () {
     const leftDrawerOpen = ref(false)
+    const rightDrawerOpen = ref(false)
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
+      rightDrawerOpen,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
+      },
+      toggleRightDrawer () {
+        rightDrawerOpen.value = !rightDrawerOpen.value
       }
     }
   }
