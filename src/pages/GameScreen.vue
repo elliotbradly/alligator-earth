@@ -18,8 +18,6 @@
     <div class="col-6">
       <canvas id="indexCanvas"> </canvas>
 
-
-
     </div>
 
     <div class="col-6">
