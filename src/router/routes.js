@@ -21,7 +21,7 @@ const routes = [
     path: '/gameTest',
     component: () => import('layouts/SimpleLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/TestPage.vue') }
+      { path: '', component: () => import('pages/TestPageTwo.vue') }
     ]
   },
 

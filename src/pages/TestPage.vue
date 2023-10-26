@@ -7,7 +7,7 @@
       bordered
       overlay
       side="right"
-      width="700"
+      width="600"
     >
 
     <q-list bordered separator>
@@ -25,7 +25,7 @@
         <q-item-section side>Side</q-item-section>
       </q-item>
 
-      <q-item clickable v-ripple :active="active" active-class="text-orange">
+      <q-item :manual-focus="true" :focus="true" :dark="true"  clickable v-ripple :active="true" active-class="bg-teal-1 text-grey-8">
         <q-item-section avatar>
           <q-avatar rounded>
             <img src="https://cdn.quasar.dev/img/mountains.jpg">
@@ -54,7 +54,7 @@
       bordered
       overlay
       side="left"
-      width="700"
+      width="600"
     >
 
 
