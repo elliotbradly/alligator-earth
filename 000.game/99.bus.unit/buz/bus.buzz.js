@@ -1,12 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateBus = exports.messageBus = exports.connectBus = exports.openBus = exports.createBus = exports.initBus = void 0;
+exports.updateBus =
+exports.messageBus =
+exports.connectBus =
+exports.openBus =
+exports.createBus =
+exports.initBus = void 0;
+
 const ActMnu = require("../../98.menu.unit/menu.action");
 const ActBus = require("../../99.bus.unit/bus.action");
 const ActCol = require("../../97.collect.unit/collect.action");
+
 var lst, idx, bit, src, dat, dex;
+
 const initBus = (cpy, bal, ste) => {
-    cpy.actList = [];
+
+  cpy.actList = [];
     if (bal == null)
         bal = { idx: null };
     if (bal.lst == null)
@@ -60,6 +69,7 @@ const initBus = (cpy, bal, ste) => {
     }
     return cpy;
 };
+
 exports.initBus = initBus;
 const createBus = (cpy, bal, ste) => {
     var client = cpy.MQTT.connect(bal.src);
@@ -68,11 +78,12 @@ const createBus = (cpy, bal, ste) => {
     //client.on('message', (tpc, msg) => { messageBus(cpy, { idx: tpc, src: msg, bit:bal.idx }, ste) })
     //client.on('connect', () => {
     //console.log(bal.idx + " connected " + bal.src)
-    //openBus(cpy, { idx: 'init-bus', lst: cpy.actList, bit:bal.idx }, ste)  
+    //openBus(cpy, { idx: 'init-bus', lst: cpy.actList, bit:bal.idx }, ste)
     //})
     return cpy;
 };
 exports.createBus = createBus;
+
 const openBus = async (cpy, bal, ste) => {
     var out = [];
     bal.lst.forEach((a) => {
@@ -105,6 +116,7 @@ const connectBus = (cpy, bal, ste) => {
         patch(ste, ActMnu.INIT_MENU, { lst });
 };
 exports.connectBus = connectBus;
+
 const messageBus = async (cpy, bal, ste) => {
     if (bal.src != null)
         dat = bal.src.toString();

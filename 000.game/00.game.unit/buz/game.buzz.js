@@ -9,10 +9,12 @@ exports.closeGame =
 exports.openGame =
 exports.initGame = void 0;
 
-
-
 const ActScn = require("../../01.scene.unit/scene.action");
 const ActBus = require("../../99.bus.unit/bus.action");
+
+const ActStr = require("../../../001.store/00.store.unit/store.action");
+
+
 const ActGam = require("../game.action");
 
 var bit, val, idx, dex, lst, dat;
