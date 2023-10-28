@@ -1,4 +1,4 @@
-import { app, ipcMain,  dialog,  BrowserWindow } from 'electron'
+import { app, ipcMain, dialog, BrowserWindow } from 'electron'
 import path from 'path'
 import os from 'os'
 
@@ -6,6 +6,8 @@ import os from 'os'
 const platform = process.platform || os.platform()
 
 let mainWindow
+
+const MQTT = require('async-mqtt');
 
 const GAME = require('../000.game/index.js')
 const ActGme = require('../000.game/00.game.unit/game.action')
@@ -16,18 +18,46 @@ const ActStr = require('../001.store/00.store.unit/store.action')
 const SPACE = require('../002.space/index.js')
 const ActSpc = require('../002.space/00.space.unit/space.action')
 
-const TIME = require('../003.time/index.js')
-const ActTme = require('../003.time/00.time.unit/time.action')
+const EARTH = require('../011.earth/index.js')
+const ActErt = require('../011.earth/00.earth.unit/earth.action')
+
+const aedes = require("aedes")();
+const server = require("net").createServer(aedes.handle);
+const port = 9011;
+
+server.listen(port, async () => {
+  console.log("server started and listening on port ", port);
+  //open(port)
+
+  const local = 'mqtt://localhost:' + port;
+  const localBit = { idx: 'local', src: local };
+
+  var bit = await STORE.hunt(ActStr.INIT_STORE, { val: 0, dat: MQTT, src: local })
+  console.log(JSON.stringify(bit))
+
+  var bit = await SPACE.hunt(ActSpc.INIT_SPACE, { val: 0, dat: MQTT, src: local })
+  console.log(JSON.stringify(bit))
+
+  var bit = await EARTH.hunt(ActErt.INIT_EARTH, { val: 0, dat: MQTT, src: local })
+  console.log(JSON.stringify(bit))
+
+  var bit = await GAME.hunt(ActGme.INIT_GAME, { val: 0, dat: MQTT, src: local });
+  console.log(JSON.stringify(bit))
+
+});
 
 
-async function handleFileOpen () {
+async function handleFileOpen() {
   const { canceled, filePaths } = await dialog.showOpenDialog({})
   if (!canceled) {
     return filePaths[0]
   }
 }
 
-async function openGame (){
+async function openGame() {
+
+
+
   var bit = await GAME.hunt(ActGme.OPEN_GAME, { val: 0 })
   return bit
 }
@@ -57,35 +87,10 @@ async function createWindow() {
 
   console.log("in the beginning...")
 
-
-
-
-
-
-
-  var bit = await STORE.hunt(ActStr.INIT_STORE, { val: 0 })
-  console.log(JSON.stringify(bit))
-
-  bit = await STORE.hunt(ActStr.WRITE_STORE, { val: 0 })
-  console.log(JSON.stringify(bit))
-
-  bit = await STORE.hunt(ActStr.READ_STORE, { val: 0 })
-  console.log(JSON.stringify(bit))
-
-
-  bit = await SPACE.hunt(ActSpc.INIT_SPACE, { val: 0 })
-  console.log(JSON.stringify(bit))
-
-
-
-
-  bit = await TIME.hunt(ActTme.INIT_TIME, { val: 0 })
-  console.log(JSON.stringify(bit))
-
   // IPC listener
   ipcMain.on('electron-store-get', async (event, val) => {
 
-    bit = await TIME.hunt( ActTme.INIT_TIME, { val: 0 })
+    bit = await TIME.hunt(ActTme.INIT_TIME, { val: 0 })
     event.returnValue = JSON.stringify(bit);
 
   });

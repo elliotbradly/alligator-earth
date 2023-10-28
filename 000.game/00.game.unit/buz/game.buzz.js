@@ -13,6 +13,8 @@ const ActScn = require("../../01.scene.unit/scene.action");
 const ActBus = require("../../99.bus.unit/bus.action");
 
 const ActStr = require("../../../001.store/00.store.unit/store.action");
+const ActSpc = require("../../../002.space/00.space.unit/space.action");
+const ActErt = require("../../../011.earth/00.earth.unit/earth.action");
 
 
 const ActGam = require("../game.action");
@@ -22,8 +24,7 @@ var bit, val, idx, dex, lst, dat;
 const initGame = async (cpy, bal, ste) => {
   console.log("live alligators 00013");
 
-  //if (bal.dat != null)
-  //  bit = await ste.hunt(ActBus.INIT_BUS, { idx: cpy.idx, lst: [ActGam], dat: bal.dat, src: bal.src });
+  if (bal.dat != null) bit = await ste.hunt(ActBus.INIT_BUS, { idx: cpy.idx, lst: [ActGam], dat: bal.dat, src: bal.src });
   //if (bal.val == 1) patch(ste, ActMnu.INIT_MENU, bal);
   //(0, exports.openGame)(cpy, bal, ste);
 
@@ -35,7 +36,16 @@ const initGame = async (cpy, bal, ste) => {
 exports.initGame = initGame;
 
 const openGame = async (cpy, bal, ste) => {
-  //bit = await ste.hunt(ActScn.SPACE_SCENE, {});
+
+  bit = await ste.bus(ActStr.OPEN_STORE, {});
+  console.log( 'bit:: ' + JSON.stringify(bit))
+
+  bit = await ste.bus(ActSpc.OPEN_SPACE, {});
+  console.log( 'bit:: ' + JSON.stringify(bit))
+
+  bit = await ste.bus(ActErt.OPEN_EARTH, {});
+  console.log( 'bit:: ' + JSON.stringify(bit))
+
   if (bal.slv != null)
     bal.slv({ aaaBit: { idx: "open-Game" } });
   return cpy;

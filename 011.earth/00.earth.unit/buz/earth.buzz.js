@@ -14,7 +14,8 @@ const ActClk = require("../../01.clock.unit/clock.action");
 var bit, val, idx, dex, lst, dat;
 
 const initEarth = async (cpy, bal, ste) => {
-    //bit = await ste.hunt(ActBus.INIT_BUS, { idx: cpy.idx, lst: [ActErt], dat: bal.dat, src: bal.src });
+
+  bit = await ste.hunt(ActBus.INIT_BUS, { idx: cpy.idx, lst: [ActErt], dat: bal.dat, src: bal.src });
     //bit = await ste.hunt(ActClr.INIT_COLOR, { lst: bal.lst, bit: bal.bit, dat: bal.dat });
     //if (bal.val == 1)
     //    patch(ste, ActMnu.INIT_MENU, bal);
@@ -34,10 +35,10 @@ const updateEarth = async (cpy, bal, ste) => {
 exports.updateEarth = updateEarth;
 const openEarth = async (cpy, bal, ste) => {
     //need some time code when to begin
-    bit = await ste.hunt(ActErt.WRITE_EARTH, { idx: bal.idx });
+    //bit = await ste.hunt(ActErt.WRITE_EARTH, { idx: bal.idx });
     //bit = await ste.bus(ActTme.WRITE_TIME, { idx: 'ert00', yrs: 2000, mth: 1, day: 1, hrs: 7, min: 7, sec: 7 })
     if (bal.slv != null)
-        bal.slv({ ertBit: { idx: "open-earth", dat: bit.ertBit.dat } });
+        bal.slv({ ertBit: { idx: "open-earth", dat: {} } });
     return cpy;
 };
 exports.openEarth = openEarth;

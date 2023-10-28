@@ -14,8 +14,8 @@ import InventoryItem from 'components/InventoryItem.vue'
 
 const inventoryList = [
   { title: 'Pole Hook' },
-  { title: 'Power Fist' },
-  { title: 'Pool Cue' }]
+  { title: 'Power Fists' },
+  { title: 'Pool Cues' }]
 
 export default defineComponent({
   name: 'Inventory',

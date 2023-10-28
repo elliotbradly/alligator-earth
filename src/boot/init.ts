@@ -9,6 +9,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 export default boot(async ( dat ) => {
   // something to do
 
+
+
   var win: any = window
   dat.app.provide('SHADE', win.SHADE)
 
