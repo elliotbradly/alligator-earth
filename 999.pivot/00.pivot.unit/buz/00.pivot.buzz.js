@@ -36,6 +36,7 @@ const updatePivot = (cpy, bal, ste) => {
         console.log("updating pivot");
         bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/999.pivot', idx: '../../999.pivot' });
         var fileList = [];
+        var indexFile = '';
         //now you need to find hunt and rename to index
         const walkFunc = async (err, pathname, dirent) => {
             if (err) {
@@ -45,12 +46,20 @@ const updatePivot = (cpy, bal, ste) => {
                 //return false;
             }
             var ext = path.extname(pathname);
+            var base = path.basename(pathname);
+            if (base == 'hunt.js') {
+                indexFile = pathname;
+            }
             if (ext == '.ts' || ext == '.map' || ext == '.tsbuildinfo') {
                 fileList.push(pathname);
             }
         };
         var wait = await (0, walk_1.walk)('../../999.pivot', walkFunc);
         fileList;
+        bit = await ste.hunt(ActDsk.READ_DISK, { src: '../../999.pivot/hunt.js' });
+        dat = bit.dskBit.dat;
+        bit = await ste.hunt(ActDsk.WRITE_DISK, { src: '../../999.pivot/index.js', dat });
+        bit = await ste.hunt(ActDsk.DELETE_DISK, { src: '../../999.pivot/hunt.js' });
         fileList.forEach((a) => ste.hunt(ActDsk.DELETE_DISK, { src: a }));
         //filter out and remove certain files 
         //process.chdir("../999.vurt");
