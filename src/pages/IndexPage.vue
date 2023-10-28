@@ -41,8 +41,8 @@ onMounted(async () => {
   //where we get the data needed to begin the game
   //const filePath = await window.electronAPI.initGame()
 
-  const filePath = await window.electronAPI.openFile()
-  alert( filePath )
+  const filePath = await window.electronAPI.initGame()
+  alert( JSON.stringify( filePath )  )
 
 })
 

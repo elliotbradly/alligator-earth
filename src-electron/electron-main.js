@@ -7,6 +7,19 @@ const platform = process.platform || os.platform()
 
 let mainWindow
 
+const GAME = require('../000.game/index.js')
+const ActGme = require('../000.game/00.game.unit/game.action')
+
+const STORE = require('../001.store/index.js')
+const ActStr = require('../001.store/00.store.unit/store.action')
+
+const SPACE = require('../002.space/index.js')
+const ActSpc = require('../002.space/00.space.unit/space.action')
+
+const TIME = require('../003.time/index.js')
+const ActTme = require('../003.time/00.time.unit/time.action')
+
+
 async function handleFileOpen () {
   const { canceled, filePaths } = await dialog.showOpenDialog({})
   if (!canceled) {
@@ -14,9 +27,18 @@ async function handleFileOpen () {
   }
 }
 
+async function initGame (){
+
+  var gamBit = {intBit:'init-game'}
+
+  return gamBit
+
+}
+
 async function createWindow() {
 
   ipcMain.handle('dialog:openFile', handleFileOpen)
+  ipcMain.handle('game:initGame', initGame)
 
   /**
    * Initial window options
@@ -38,14 +60,12 @@ async function createWindow() {
 
   console.log("in the beginning...")
 
-  const GAME = require('../000.game/index.js')
-  const ActGme = require('../000.game/00.game.unit/game.action')
+
 
   var bit = await GAME.hunt(ActGme.INIT_GAME, { val: 0 })
   console.log(JSON.stringify(bit))
 
-  const STORE = require('../001.store/index.js')
-  const ActStr = require('../001.store/00.store.unit/store.action')
+
 
   var bit = await STORE.hunt(ActStr.INIT_STORE, { val: 0 })
   console.log(JSON.stringify(bit))
@@ -56,15 +76,12 @@ async function createWindow() {
   bit = await STORE.hunt(ActStr.READ_STORE, { val: 0 })
   console.log(JSON.stringify(bit))
 
-  const SPACE = require('../002.space/index.js')
-  const ActSpc = require('../002.space/00.space.unit/space.action')
 
   bit = await SPACE.hunt(ActSpc.INIT_SPACE, { val: 0 })
   console.log(JSON.stringify(bit))
 
 
-  const TIME = require('../003.time/index.js')
-  const ActTme = require('../003.time/00.time.unit/time.action')
+
 
   bit = await TIME.hunt(ActTme.INIT_TIME, { val: 0 })
   console.log(JSON.stringify(bit))
