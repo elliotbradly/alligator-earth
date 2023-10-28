@@ -1,4 +1,4 @@
-import { app, ipcMain, BrowserWindow } from 'electron'
+import { app, ipcMain,  dialog,  BrowserWindow } from 'electron'
 import path from 'path'
 import os from 'os'
 
@@ -7,7 +7,17 @@ const platform = process.platform || os.platform()
 
 let mainWindow
 
+async function handleFileOpen () {
+  const { canceled, filePaths } = await dialog.showOpenDialog({})
+  if (!canceled) {
+    return filePaths[0]
+  }
+}
+
 async function createWindow() {
+
+  ipcMain.handle('dialog:openFile', handleFileOpen)
+
   /**
    * Initial window options
    */

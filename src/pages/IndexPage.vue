@@ -38,6 +38,11 @@ onMounted(async () => {
 
   //alert(window.electron.store.get('foo'));
 
+  //where we get the data needed to begin the game
+  //const filePath = await window.electronAPI.initGame()
+
+  const filePath = await window.electronAPI.openFile()
+  alert( filePath )
 
 })
 
