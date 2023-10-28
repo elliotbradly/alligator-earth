@@ -27,18 +27,15 @@ async function handleFileOpen () {
   }
 }
 
-async function initGame (){
-
-  var gamBit = {intBit:'init-game'}
-
-  return gamBit
-
+async function openGame (){
+  var bit = await GAME.hunt(ActGme.OPEN_GAME, { val: 0 })
+  return bit
 }
 
 async function createWindow() {
 
   ipcMain.handle('dialog:openFile', handleFileOpen)
-  ipcMain.handle('game:initGame', initGame)
+  ipcMain.handle('game:openGame', openGame)
 
   /**
    * Initial window options
@@ -62,8 +59,7 @@ async function createWindow() {
 
 
 
-  var bit = await GAME.hunt(ActGme.INIT_GAME, { val: 0 })
-  console.log(JSON.stringify(bit))
+
 
 
 

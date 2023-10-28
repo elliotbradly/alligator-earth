@@ -3,7 +3,7 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', {
   openFile: () => ipcRenderer.invoke('dialog:openFile'),
-  initGame: ()=> ipcRenderer.invoke('game:initGame'),
+  openGame: ()=> ipcRenderer.invoke('game:openGame'),
 })
 
 contextBridge.exposeInMainWorld('electron', {

@@ -17,32 +17,17 @@ const SHADE = inject('SHADE')
 
 onMounted(async () => {
 
-  var term = new Terminal();
-  term.open(document.getElementById('terminal'));
-
-  term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
-  term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
-  term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
-
-  term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
-
-  term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
-
-  term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
-
-
-
-
-  var bit = await SHADE.hunt(SHADE.ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { height: 720 } });
-  instance?.proxy?.$forceUpdate();
 
   //alert(window.electron.store.get('foo'));
 
   //where we get the data needed to begin the game
   //const filePath = await window.electronAPI.initGame()
 
-  const filePath = await window.electronAPI.initGame()
-  alert( JSON.stringify( filePath )  )
+  var bit = await window.electronAPI.openGame()
+  console.log( JSON.stringify(bit )  )
+
+  instance?.proxy?.$forceUpdate();
+
 
 })
 
