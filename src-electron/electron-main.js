@@ -69,10 +69,8 @@ async function handleFileOpen() {
 
 async function openGame() {
 
-
-
-  var bit = await PLAY.hunt(ActPly.OPEN_PLAY, { val: 0 })
-  return bit
+  //var bit = await PLAY.hunt(ActPly.OPEN_PLAY, { val: 0 })
+  return {}
 }
 
 async function createWindow() {
