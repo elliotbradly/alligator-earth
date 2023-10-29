@@ -1,7 +1,27 @@
 <template>
-  <div id="terminal"></div>
-  <canvas id="indexCanvas"> </canvas>
+
+<q-page class="home-page window-height window-width row justify-center items-center">
+
+
+
+        <div class="col-12 text-center self-center">
+
+
+          <q-img src="gif/000.open.gif" class="self-center" style="max-width: 300px; height: 150px;">
+          </q-img>
+
+      </div>
+
+
+         </q-page>
+
 </template>
+
+<style scoped>
+body {
+  background-color: lightblue;
+}
+</style>
 
 <script setup>
 import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
@@ -24,7 +44,7 @@ onMounted(async () => {
   //const filePath = await window.electronAPI.initGame()
 
   var bit = await window.electronAPI.openGame()
-  console.log( JSON.stringify(bit )  )
+  console.log(JSON.stringify(bit))
 
   instance?.proxy?.$forceUpdate();
 
