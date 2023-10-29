@@ -1,0 +1,20 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.removeSurface = exports.deleteSurface = exports.dimensionSurface = exports.createSurface = exports.writeSurface = exports.readSurface = exports.updateSurface = exports.initSurface = void 0;
+var surface_buzz_1 = require("./buz/surface.buzz");
+Object.defineProperty(exports, "initSurface", { enumerable: true, get: function () { return surface_buzz_1.initSurface; } });
+var surface_buzz_2 = require("./buz/surface.buzz");
+Object.defineProperty(exports, "updateSurface", { enumerable: true, get: function () { return surface_buzz_2.updateSurface; } });
+var surface_buzz_3 = require("./buz/surface.buzz");
+Object.defineProperty(exports, "readSurface", { enumerable: true, get: function () { return surface_buzz_3.readSurface; } });
+var surface_buzz_4 = require("./buz/surface.buzz");
+Object.defineProperty(exports, "writeSurface", { enumerable: true, get: function () { return surface_buzz_4.writeSurface; } });
+var surface_buzz_5 = require("./buz/surface.buzz");
+Object.defineProperty(exports, "createSurface", { enumerable: true, get: function () { return surface_buzz_5.createSurface; } });
+var surface_buzz_6 = require("./buz/surface.buzz");
+Object.defineProperty(exports, "dimensionSurface", { enumerable: true, get: function () { return surface_buzz_6.dimensionSurface; } });
+var surface_buzz_7 = require("./buz/surface.buzz");
+Object.defineProperty(exports, "deleteSurface", { enumerable: true, get: function () { return surface_buzz_7.deleteSurface; } });
+var surface_buzz_8 = require("./buz/surface.buzz");
+Object.defineProperty(exports, "removeSurface", { enumerable: true, get: function () { return surface_buzz_8.removeSurface; } });
+//# sourceMappingURL=surface.buzzer.js.map
