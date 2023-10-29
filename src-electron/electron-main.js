@@ -9,17 +9,17 @@ let mainWindow
 
 const MQTT = require('async-mqtt');
 
-const GAME = require('../000.game/index.js')
-const ActGme = require('../000.game/00.game.unit/game.action')
+const PLAY = require('../000.play/index.js')
+const ActPly = require('../000.play/00.play.unit/play.action')
 
-const STORE = require('../001.store/index.js')
-const ActStr = require('../001.store/00.store.unit/store.action')
+//const STORE = require('../001.store/index.js')
+//const ActStr = require('../001.store/00.store.unit/store.action')
 
-const SPACE = require('../002.space/index.js')
-const ActSpc = require('../002.space/00.space.unit/space.action')
+//const SPACE = require('../002.space/index.js')
+//const ActSpc = require('../002.space/00.space.unit/space.action')
 
-const EARTH = require('../011.earth/index.js')
-const ActErt = require('../011.earth/00.earth.unit/earth.action')
+//const EARTH = require('../011.earth/index.js')
+//const ActErt = require('../011.earth/00.earth.unit/earth.action')
 
 const aedes = require("aedes")();
 const server = require("net").createServer(aedes.handle);
@@ -32,16 +32,16 @@ server.listen(port, async () => {
   const local = 'mqtt://localhost:' + port;
   const localBit = { idx: 'local', src: local };
 
-  var bit = await STORE.hunt(ActStr.INIT_STORE, { val: 0, dat: MQTT, src: local })
-  console.log(JSON.stringify(bit))
+  //var bit = await STORE.hunt(ActStr.INIT_STORE, { val: 0, dat: MQTT, src: local })
+  //console.log(JSON.stringify(bit))
 
-  var bit = await SPACE.hunt(ActSpc.INIT_SPACE, { val: 0, dat: MQTT, src: local })
-  console.log(JSON.stringify(bit))
+  //var bit = await SPACE.hunt(ActSpc.INIT_SPACE, { val: 0, dat: MQTT, src: local })
+  //console.log(JSON.stringify(bit))
 
-  var bit = await EARTH.hunt(ActErt.INIT_EARTH, { val: 0, dat: MQTT, src: local })
-  console.log(JSON.stringify(bit))
+  //var bit = await EARTH.hunt(ActErt.INIT_EARTH, { val: 0, dat: MQTT, src: local })
+  //console.log(JSON.stringify(bit))
 
-  var bit = await GAME.hunt(ActGme.INIT_GAME, { val: 0, dat: MQTT, src: local });
+  var bit = await PLAY.hunt(ActPly.INIT_PLAY, { val: 0, dat: MQTT, src: local });
   console.log(JSON.stringify(bit))
 
 });
@@ -58,7 +58,7 @@ async function openGame() {
 
 
 
-  var bit = await GAME.hunt(ActGme.OPEN_GAME, { val: 0 })
+  var bit = await PLAY.hunt(ActPly.OPEN_PLAY, { val: 0 })
   return bit
 }
 

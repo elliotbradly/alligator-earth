@@ -1,0 +1,24 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SELECT_HEXMAP = exports.DEFOCUS_HEXMAP = exports.FOCUSING_HEXMAP = exports.SEEK_HEXMAP = exports.NAME_HEXMAP = exports.REPLACE_HEXMAP = exports.LIST_HEXMAP = exports.LOAD_HEXMAP = exports.SHAPE_HEXMAP = exports.SAVE_HEXMAP = exports.TOOL_HEXMAP = exports.GEOJSON_HEXMAP = exports.ATLAS_HEXMAP = exports.COPY_HEXMAP = exports.CREATE_HEXMAP = exports.WRITE_HEXMAP = exports.READ_HEXMAP = exports.OPEN_HEXMAP = exports.UPDATE_HEXMAP = exports.INIT_HEXMAP = void 0;
+exports.INIT_HEXMAP = "[Hexmap action] Init Hexmap";
+exports.UPDATE_HEXMAP = "[Hexmap action] Update Hexmap";
+exports.OPEN_HEXMAP = "[Hexmap action] Open Hexmap";
+exports.READ_HEXMAP = "[Read action] Read Hexmap";
+exports.WRITE_HEXMAP = "[Write action] Write Hexmap";
+exports.CREATE_HEXMAP = "[Create action] Create Hexmap";
+exports.COPY_HEXMAP = "[Copy action] Copy Hexmap";
+exports.ATLAS_HEXMAP = "[Atlas action] Atlas Hexmap";
+exports.GEOJSON_HEXMAP = "[Geojson action] Geojson Hexmap";
+exports.TOOL_HEXMAP = "[Tool action] Tool Hexmap";
+exports.SAVE_HEXMAP = "[Save action] Save Hexmap";
+exports.SHAPE_HEXMAP = "[Shape action] Shape Hexmap";
+exports.LOAD_HEXMAP = "[Load action] Load Hexmap";
+exports.LIST_HEXMAP = "[List action] List Hexmap";
+exports.REPLACE_HEXMAP = "[Replace action] Replace Hexmap";
+exports.NAME_HEXMAP = "[Name action] Name Hexmap";
+exports.SEEK_HEXMAP = "[Seek action] Seek Hexmap";
+exports.FOCUSING_HEXMAP = "[Focusing action] Focusing Hexmap";
+exports.DEFOCUS_HEXMAP = "[Defocus action] Defocus Hexmap";
+exports.SELECT_HEXMAP = "[Select action] Select Hexmap";
+//# sourceMappingURL=hexmap.action.js.map

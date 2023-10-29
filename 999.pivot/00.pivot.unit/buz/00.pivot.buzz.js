@@ -5,7 +5,7 @@ const ActMnu = require("../../98.menu.unit/menu.action");
 const ActBus = require("../../99.bus.unit/bus.action");
 const ActPvt = require("../pivot.action");
 const ActDsk = require("../../96.disk.unit/disk.action");
-var bit, val, idx, dex, lst, dat;
+var bit, val, idx, dex, lst, dat, src;
 const initPivot = async (cpy, bal, ste) => {
     if (bal.dat != null)
         bit = await ste.hunt(ActBus.INIT_BUS, { idx: cpy.idx, lst: [ActPvt, ActDsk], dat: bal.dat, src: bal.src });
@@ -18,9 +18,12 @@ const initPivot = async (cpy, bal, ste) => {
 exports.initPivot = initPivot;
 const updatePivot = (cpy, bal, ste) => {
     //check and see if artefact exists
+    src = bal.src;
+    if (src == null)
+        src = '999.pivot';
     const { exec } = require('child_process');
     const path = require("path");
-    exec('tsc -b 999.pivot', async (err, stdout, stderr) => {
+    exec('tsc -b ' + src, async (err, stdout, stderr) => {
         if (err) {
             console.error(`exec error: ${err}`);
         }
@@ -34,10 +37,9 @@ const updatePivot = (cpy, bal, ste) => {
             return cpy;
         }
         console.log("updating pivot");
-        bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/999.pivot', idx: '../../999.pivot' });
+        bit = await ste.bus(ActDsk.COPY_DISK, { src: '../' + src + '/dist/' + src, idx: '../../' + src });
         var fileList = [];
         var indexFile = '';
-        //now you need to find hunt and rename to index
         const walkFunc = async (err, pathname, dirent) => {
             if (err) {
                 throw err;
@@ -54,29 +56,16 @@ const updatePivot = (cpy, bal, ste) => {
                 fileList.push(pathname);
             }
         };
-        var wait = await (0, walk_1.walk)('../../999.pivot', walkFunc);
+        var wait = await (0, walk_1.walk)('../../' + src, walkFunc);
         fileList;
-        bit = await ste.hunt(ActDsk.READ_DISK, { src: '../../999.pivot/hunt.js' });
+        bit = await ste.hunt(ActDsk.READ_DISK, { src: '../../' + src + '/hunt.js' });
         dat = bit.dskBit.dat;
-        bit = await ste.hunt(ActDsk.WRITE_DISK, { src: '../../999.pivot/index.js', dat });
-        bit = await ste.hunt(ActDsk.DELETE_DISK, { src: '../../999.pivot/hunt.js' });
+        bit = await ste.hunt(ActDsk.WRITE_DISK, { src: '../../' + src + '/index.js', dat });
+        bit = await ste.hunt(ActDsk.DELETE_DISK, { src: '../../' + src + '/hunt.js' });
         fileList.forEach((a) => ste.hunt(ActDsk.DELETE_DISK, { src: a }));
-        //filter out and remove certain files 
-        //process.chdir("../999.vurt");
-        //bit = await ste.bus(ActVrt.BUNDLE_VURT, { src: "999.pivot" });
-        //process.chdir("../999.pivot");
-        //bit = await ste.bus(ActDsk.READ_DISK, { src: './work/999.pivot.js' })
-        //var pivot = bit.dskBit.dat;
-        //bit = await ste.bus(ActDsk.WRITE_DISK, { src: '../gillisse/public/jsx/999.pivot.js', dat: pivot })
-        //bit = await ste.bus(ActDsk.READ_DISK, { src: './index.html' })
-        //var html = bit.dskBit.dat;
-        //bit = await ste.bus(ActDsk.READ_DISK, { src: './index.js' })
-        //var index = bit.dskBit.dat;
-        //bit = await ste.bus(ActDsk.WRITE_DISK, { src: '../gillisse/public/jsx/index.js', dat: index })
-        //bit = await ste.bus(ActDsk.WRITE_DISK, { src: '../gillisse/index.html', dat: html })
         setTimeout(() => {
             if (bal.slv != null)
-                bal.slv({ pvtBit: { idx: "update-pivot" } });
+                bal.slv({ pvtBit: { idx: "update-pivot", src } });
         }, 3333);
     });
     return cpy;

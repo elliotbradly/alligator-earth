@@ -32,7 +32,12 @@ const updateMenu = async (cpy, bal, ste) => {
             bit = await ste.hunt(ActPvt.OPEN_PIVOT, {});
             break;
         case ActPvt.UPDATE_PIVOT:
-            bit = await ste.hunt(ActPvt.UPDATE_PIVOT, {});
+            bit = await ste.hunt(ActPvt.LIST_PIVOT);
+            lst = bit.pvtBit.lst;
+            bit = await ste.hunt(ActTrm.UPDATE_TERMINAL, { lst });
+            var val = bit.trmBit.val;
+            var src = lst[val];
+            bit = await ste.hunt(ActPvt.UPDATE_PIVOT, { src });
             break;
         case ActMnu.UNIT_MENU:
             bit = await ste.hunt(ActMnu.UNIT_MENU, {});
