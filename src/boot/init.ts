@@ -9,11 +9,17 @@ import { createRouter, createWebHistory } from 'vue-router'
 export default boot(async ( dat ) => {
   // something to do
 
-
-
   var win: any = window
   dat.app.provide('SHADE', win.SHADE)
+  dat.app.provide('MQTT', win.MQTT)
 
-  console.log("SHADE " + win.SHADE)
+  const prt = 8883;
+  const local = 'mqtt://localhost:' + prt;
+  const localBit = { idx: 'local', src: local };
+
+  var bit = await win.SHADE.hunt( win.SHADE.ActShd.INIT_SHADE, { val: 1, dat: win.MQTT, src: local });
+
+
+
 
 })
