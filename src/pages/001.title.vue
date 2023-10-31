@@ -17,7 +17,7 @@ const SHADE = inject('SHADE')
 onMounted(async () => {
 
 
-  var bit = await SHADE.hunt(SHADE.ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { height: 720 } });
+  var bit = await SHADE.hunt(SHADE.ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { width: 1200, height:600 } });
   instance?.proxy?.$forceUpdate();
 
 
@@ -27,7 +27,7 @@ onUpdated(async () => {
   // text content should be the same as current `count.value`
 
   var bit = await SHADE.hunt(SHADE.ActVsg.REMOVE_VISAGE, { idx: "vsg00" })
-  bit = await SHADE.hunt(SHADE.ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { height: 720 } })
+  bit = await SHADE.hunt(SHADE.ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: {  } })
 
   bit = await SHADE.hunt(SHADE.ActVsg.READ_VISAGE, { idx: "vsg00" })
 

@@ -2,6 +2,7 @@ import { app, ipcMain, dialog, BrowserWindow } from 'electron'
 import path from 'path'
 import os from 'os'
 
+
 // needed in case process is undefined under Linux
 const platform = process.platform || os.platform()
 
@@ -80,8 +81,8 @@ async function createWindow() {
    */
   mainWindow = new BrowserWindow({
     icon: path.resolve(__dirname, 'icons/icon.png'), // tray icon
-    width: 1600,
-    height: 900,
+    width: 600,
+    height: 480,
     useContentSize: true,
     webPreferences: {
       contextIsolation: true,
@@ -90,7 +91,7 @@ async function createWindow() {
     }
   })
 
-  mainWindow.setPosition(-600, 1800);
+  mainWindow.setPosition(950, 250);
   mainWindow.maximize();
 
   console.log("in the beginning...")
@@ -111,7 +112,7 @@ async function createWindow() {
 
   if (process.env.DEBUGGING) {
     // if on DEV or Production with debug enabled
-    mainWindow.webContents.openDevTools()
+    //mainWindow.webContents.openDevTools()
   } else {
     // we're on production; no access to devtools pls
     mainWindow.webContents.on('devtools-opened', () => {
