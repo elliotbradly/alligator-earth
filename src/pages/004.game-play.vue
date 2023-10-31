@@ -16,6 +16,7 @@ import * as ActShd from '../110.shade/00.shade.unit/shade.action'
 import * as ActVsg from '../110.shade/01.visage.unit/visage.action'
 import * as ActCan from '../110.shade/03.container.unit/container.action'
 
+import {mount } from "../composables/screens"
 
 const router = useRouter()
 const route = useRoute()
@@ -27,6 +28,8 @@ onMounted(async () => {
 
   var bit = await SHADE.hunt(SHADE.ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: {} });
   instance?.proxy?.$forceUpdate();
+
+  mount('on')
 
   //alert(window.electron.store.get('foo'));
 })
