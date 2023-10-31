@@ -2,6 +2,7 @@ import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } fr
 
 import * as ActVsg from '../110.shade/01.visage.unit/visage.action'
 import * as ActCan from '../110.shade/03.container.unit/container.action'
+import * as ActTxt from '../110.shade/05.text.unit/text.action'
 
 
 
@@ -33,6 +34,8 @@ export const update = async (value: HelloWorld) => {
 
   bit = await SHADE['hunt']( ActCan.WRITE_CONTAINER, { idx: "can00", src: 'vsg00' })
   bit = await SHADE['hunt']( ActCan.SURFACE_CONTAINER, { idx: 'fce-can-00', src: "vsg00" });
+
+  bit = await SHADE['hunt']( ActTxt.WRITE_TEXT, { idx:'txt00', src:'vsg00', can: 'can00', txt: "vsg00" });
 
   return value
 }
