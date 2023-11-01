@@ -4,3 +4,6 @@
 [submodule "artefact"]
 	path = artefact
 	url = https://elliotbradly@dev.azure.com/elliotbradly/00.t.a.s.u.s.s/_git/artefact
+[submodule "110.shade"]
+	path = 110.shade
+	url = https://github.com/elliotbradly/110.shade.git
