@@ -20,8 +20,8 @@ const initSpace = async (cpy, bal, ste) => {
 };
 exports.initSpace = initSpace;
 const openSpace = async (cpy, bal, ste) => {
-  if (bal.slv != null)
-  bal.slv({ spcBit: { idx: "open-space" } });
+    if (bal.slv != null)
+        bal.slv({ spcBit: { idx: "open-space" } });
     return cpy;
 };
 exports.openSpace = openSpace;
