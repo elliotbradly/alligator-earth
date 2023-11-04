@@ -73,10 +73,7 @@ async function openGame() {
 }
 
 async function shapeHexmap() {
-
-  //var bit = await PLAY.hunt(ActPly.OPEN_PLAY, { val: 0 })
-   bit = await SPACE.hunt( ActMap.SHAPE_HEXMAP, { idx:'hex00',  dat: { frm: 'rectangle' } })
-
+  bit = await SPACE.hunt(ActMap.SHAPE_HEXMAP, { idx: 'hex00', dat: { frm: 'rectangle' } })
   return bit
 }
 
