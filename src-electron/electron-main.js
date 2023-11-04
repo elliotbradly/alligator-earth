@@ -16,8 +16,9 @@ const MQTT = require('async-mqtt');
 //const STORE = require('../001.store/index.js')
 //const ActStr = require('../001.store/00.store.unit/store.action')
 
-//const SPACE = require('../002.space/index.js')
-//const ActSpc = require('../002.space/00.space.unit/space.action')
+const SPACE = require('../002.space/index.js')
+const ActSpc = require('../002.space/00.space.unit/space.action')
+const ActMap = require('../002.space/03.hexmap.unit/hexmap.action')
 
 //const EARTH = require('../011.earth/index.js')
 //const ActErt = require('../011.earth/00.earth.unit/earth.action')
@@ -46,8 +47,8 @@ server.listen(port, async () => {
   //var bit = await STORE.hunt(ActStr.INIT_STORE, { val: 0, dat: MQTT, src: local })
   //console.log(JSON.stringify(bit))
 
-  //var bit = await SPACE.hunt(ActSpc.INIT_SPACE, { val: 0, dat: MQTT, src: local })
-  //console.log(JSON.stringify(bit))
+  var bit = await SPACE.hunt(ActSpc.INIT_SPACE, { val: 0, dat: MQTT, src: local })
+  console.log(JSON.stringify(bit))
 
   //var bit = await EARTH.hunt(ActErt.INIT_EARTH, { val: 0, dat: MQTT, src: local })
   //console.log(JSON.stringify(bit))
@@ -71,10 +72,21 @@ async function openGame() {
   return {}
 }
 
+async function shapeHexmap() {
+
+  //var bit = await PLAY.hunt(ActPly.OPEN_PLAY, { val: 0 })
+  var bit = await SPACE.hunt( ActMap.SHAPE_HEXMAP, { idx:'map00' })
+
+  debugger
+
+  return bit
+}
+
 async function createWindow() {
 
   ipcMain.handle('dialog:openFile', handleFileOpen)
   ipcMain.handle('game:openGame', openGame)
+  ipcMain.handle('space:shapeHexmap', shapeHexmap)
 
   /**
    * Initial window options
@@ -91,8 +103,8 @@ async function createWindow() {
     }
   })
 
-  mainWindow.setPosition(950, 250);
-  mainWindow.maximize();
+  //mainWindow.setPosition(950, 250);
+  //mainWindow.maximize();
 
   console.log("in the beginning...")
 
