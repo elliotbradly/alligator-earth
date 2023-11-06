@@ -7,7 +7,6 @@ const ActTrm = require("../../act/terminal.action");
 const ActChc = require("../../act/choice.action");
 const ActGrd = require("../../act/grid.action");
 const ActCns = require("../../act/console.action");
-const ActPut = require("../../act/input.action");
 const ActMap = require("../../03.hexmap.unit/hexmap.action");
 const ActGeo = require("../../02.geojson.unit/geojson.action");
 var bit, lst, dex, idx, dat, src, val;
@@ -40,57 +39,11 @@ const hexmapMenu = async (cpy, bal, ste) => {
     //bit = await ste.bus(ActTrm.WRITE_TERMINAL, { val: 3, src: "Height---" + nowH })
     //bit = await ste.bus(ActTrm.WRITE_TERMINAL, { val: 3, src: "Form---" + nowForm })
     //bit = await ste.bus(ActTrm.WRITE_TERMINAL, { src: "GEOJSON:" + JSON.stringify(cpy.geoJsonNow) })
-    lst = [ActMap.WRITE_HEXMAP,
-        //ActMap.SHAPE_HEXMAP,
-        //ActMap.OPEN_HEXMAP,
-        //ActMap.ADD_HEXMAP,
-        //ActMap.WRITE_HEXMAP,
-        //ActMap.FOCUSING_HEXMAP,
-        //ActMap.LOAD_HEXMAP,
-        //ActGeo.LOAD_GEOJSON,
-        //ActMnu.CREATE_HEXMAP_MENU,
-        ActMnu.UPDATE_MENU];
-    bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 3, ySpan: 12 });
+    lst = [ActMap.OPEN_HEXMAP, ActMap.ADD_HEXMAP, ActMap.WRITE_HEXMAP, ActMap.FOCUSING_HEXMAP, ActMap.LOAD_HEXMAP, ActGeo.LOAD_GEOJSON, ActMnu.CREATE_HEXMAP_MENU, ActMnu.UPDATE_MENU];
+    bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 2, ySpan: 12 });
     bit = await ste.bus(ActChc.OPEN_CHOICE, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst, net: bit.grdBit.dat });
     src = bit.chcBit.src;
     switch (src) {
-        case ActMap.WRITE_HEXMAP:
-            bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 3, ySpan: 6 });
-            bit = await ste.bus(ActPut.OPEN_INPUT, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst, net: bit.grdBit.dat });
-            idx = bit.putBit.src;
-            bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 3, ySpan: 6 });
-            bit = await ste.bus(ActPut.OPEN_INPUT, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst, net: bit.grdBit.dat });
-            var w = Number(bit.putBit.src);
-            bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 3, ySpan: 6 });
-            bit = await ste.bus(ActPut.OPEN_INPUT, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst, net: bit.grdBit.dat });
-            var h = Number(bit.putBit.src);
-            var shapeList = [];
-            for (var key in SHAPE) {
-                shapeList.push(SHAPE[key]);
-            }
-            shapeList;
-            bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 3, ySpan: 12 });
-            bit = await ste.bus(ActChc.OPEN_CHOICE, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst: shapeList, net: bit.grdBit.dat });
-            //bit = await ste.bus(ActTrm.UPDATE_TERMINAL, { lst: shapeList })
-            bit = bit.trmBit;
-            src = shapeList[bit.val];
-            var frm = src;
-            //now the type
-            bit = await ste.hunt(ActMap.SHAPE_HEXMAP, { idx, dat: { frm, w, h } });
-            mapMod.select = bit.mapBit.dat;
-            cpy.mapNomNow = mapMod.select.idx;
-            bit = await ste.bus(ActTrm.WRITE_TERMINAL, { src: JSON.stringify(bit) });
-            bit = await ste.hunt(ActMap.SELECT_HEXMAP, { idx });
-            bit = await ste.hunt(ActMnu.HEXMAP_MENU);
-            break;
-        case ActMap.SHAPE_HEXMAP:
-            lst = [SHAPE.RECTANGLE, SHAPE.TRIANGLE, SHAPE.HEXAGON, SHAPE.PARALLELOGRAM];
-            bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 3, ySpan: 12 });
-            bit = await ste.bus(ActChc.OPEN_CHOICE, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst, net: bit.grdBit.dat });
-            src = bit.chcBit.src;
-            bit = await ste.hunt(ActMap.SHAPE_HEXMAP, { idx: 'hex00', dat: { frm: src } });
-            debugger;
-            break;
         case ActMnu.CREATE_HEXMAP_MENU:
             bit = await ste.hunt(ActMnu.CREATE_HEXMAP_MENU);
             bit = await ste.hunt(ActMnu.HEXMAP_MENU);
@@ -98,6 +51,7 @@ const hexmapMenu = async (cpy, bal, ste) => {
         case ActMap.OPEN_HEXMAP:
             //bit = await ste.bus(ActDsk.INDEX_DISK, { src: './data/hexmap/' })
             //lst = bit.dskBit.lst
+            debugger;
             bit = await ste.bus(ActTrm.UPDATE_TERMINAL, { lst });
             bit = bit.trmBit;
             src = lst[bit.val];
@@ -121,6 +75,30 @@ const hexmapMenu = async (cpy, bal, ste) => {
             mapMod.select = bit.mapBit.dat;
             cpy.mapNomNow = mapMod.select.idx;
             bit = await ste.hunt(ActMnu.UPDATE_MENU);
+            break;
+        case ActMap.WRITE_HEXMAP:
+            bit = await ste.bus(ActTrm.INPUT_TERMINAL, { lst: ["", "id hexmap..."] });
+            idx = bit.trmBit.src;
+            bit = await ste.bus(ActTrm.INPUT_TERMINAL, { lst: ["", "width hexmap..."] });
+            var w = Number(bit.trmBit.src);
+            bit = await ste.bus(ActTrm.INPUT_TERMINAL, { lst: ["", "height hexmap..."] });
+            var h = Number(bit.trmBit.src);
+            var shapeList = [];
+            for (var key in SHAPE) {
+                shapeList.push(SHAPE[key]);
+            }
+            shapeList;
+            bit = await ste.bus(ActTrm.UPDATE_TERMINAL, { lst: shapeList });
+            bit = bit.trmBit;
+            src = shapeList[bit.val];
+            var frm = src;
+            //now the type
+            bit = await ste.hunt(ActMap.SHAPE_HEXMAP, { idx, dat: { frm, w, h } });
+            mapMod.select = bit.mapBit.dat;
+            cpy.mapNomNow = mapMod.select.idx;
+            bit = await ste.bus(ActTrm.WRITE_TERMINAL, { src: JSON.stringify(bit) });
+            bit = await ste.hunt(ActMap.SELECT_HEXMAP, { idx });
+            bit = await ste.hunt(ActMnu.HEXMAP_MENU);
             break;
         case ActMap.FOCUSING_HEXMAP:
             bit = await ste.hunt(ActMap.LIST_HEXMAP, {});
@@ -185,4 +163,4 @@ exports.hexmapMenu = hexmapMenu;
 const SHAPE = require("../../val/shape");
 const Color = require("../../val/console-color");
 const Align = require("../../val/align");
-//# sourceMappingURL=01.hexmap-menu.buzz.js.map
+//# sourceMappingURL=hexmap-menu.buzz.js.map
