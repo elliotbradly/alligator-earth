@@ -32,9 +32,9 @@ const hexmapMenu = async (cpy, bal, ste) => {
     if (select != null) {
         nowIdx = select.idx;
     }
-    bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: "Now---" + cpy.mapNomNow });
-    bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: "Width---" + nowW });
-    bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: "-----------" });
+    //bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: "Now---" + cpy.mapNomNow })
+    //bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: "Width---" + nowW })
+    //bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: "-----------" })
     //bit = await ste.bus(ActTrm.WRITE_TERMINAL, { val: 3, src: "Now---" + cpy.mapNomNow })
     //bit = await ste.bus(ActTrm.WRITE_TERMINAL, { val: 3, src: "Width---" + nowW })
     //bit = await ste.bus(ActTrm.WRITE_TERMINAL, { val: 3, src: "Height---" + nowH })
@@ -81,18 +81,20 @@ const hexmapMenu = async (cpy, bal, ste) => {
             //bit = await ste.bus(ActTrm.UPDATE_TERMINAL, { lst: shapeList })
             src = bit.chcBit.src;
             var frm = src;
+            bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: "hexmap shape " + frm });
             //now the type
             bit = await ste.hunt(ActMap.SHAPE_HEXMAP, { idx, dat: { frm, w, h } });
             //mapMod.select = bit.mapBit.dat
             var grid = bit.mapBit.dat.dat.bit;
+            bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: "processing " + grid.length });
             bit = await ste.hunt(ActMap.WRITE_HEXMAP, { idx, dat: { bit: { grid } } });
             dat = bit.mapBit;
             bit = await ste.hunt(ActMap.READ_HEXMAP, { idx });
             dat = bit.mapBit.dat;
-            debugger;
-            //cpy.mapNomNow = mapMod.select.idx
-            bit = await ste.bus(ActTrm.WRITE_TERMINAL, { src: JSON.stringify(bit) });
-            bit = await ste.hunt(ActMap.SELECT_HEXMAP, { idx });
+            bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: "---> " });
+            bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: "---> " });
+            bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: "---> " });
+            bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: "pocessed " + idx });
             bit = await ste.hunt(ActMnu.HEXMAP_MENU);
             break;
         case ActMap.SHAPE_HEXMAP:
