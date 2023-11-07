@@ -41,6 +41,7 @@ const hexmapMenu = async (cpy, bal, ste) => {
     //bit = await ste.bus(ActTrm.WRITE_TERMINAL, { val: 3, src: "Form---" + nowForm })
     //bit = await ste.bus(ActTrm.WRITE_TERMINAL, { src: "GEOJSON:" + JSON.stringify(cpy.geoJsonNow) })
     lst = [ActMap.WRITE_HEXMAP,
+        ActMap.LIST_HEXMAP,
         //ActMap.SHAPE_HEXMAP,
         //ActMap.OPEN_HEXMAP,
         //ActMap.ADD_HEXMAP,
@@ -54,6 +55,13 @@ const hexmapMenu = async (cpy, bal, ste) => {
     bit = await ste.bus(ActChc.OPEN_CHOICE, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst, net: bit.grdBit.dat });
     src = bit.chcBit.src;
     switch (src) {
+        case ActMap.LIST_HEXMAP:
+            bit = await ste.hunt(ActMap.LIST_HEXMAP, {});
+            lst = bit.mapBit.lst;
+            bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 3, ySpan: 12 });
+            bit = await ste.bus(ActChc.OPEN_CHOICE, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst, net: bit.grdBit.dat });
+            src = bit.chcBit.src;
+            break;
         case ActMap.WRITE_HEXMAP:
             bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 3, ySpan: 6 });
             bit = await ste.bus(ActPut.OPEN_INPUT, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst, txt: 'input hexmap name', net: bit.grdBit.dat });
