@@ -11,11 +11,8 @@ var sim = {
     state: null
 };
 
-
 sim.open = (space) => { return open(space); };
 var open = (space) => {
-
-
 
     init(space);
 

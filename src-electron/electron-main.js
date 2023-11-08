@@ -69,7 +69,7 @@ async function handleFileOpen() {
 
 async function openGame() {
 
-  //GAME.open( SPACE );
+  GAME.open( SPACE );
 
   //bit = await SPACE.hunt(ActFoc.WRITE_FOCUS, { foc: 'foc00' })
   //bit = await SPACE.hunt(ActFoc.WRITE_FOCUS, { foc: 'foc00' })
