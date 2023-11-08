@@ -60,15 +60,15 @@ export const update = async (value: HelloWorld) => {
   bit = await SHADE['hunt']( ActGph.WRITE_GRAPHIC, { idx:'gph00', dat: { h:100, w:40, x:40, y:40 }  })
   bit = await SHADE['hunt']( ActCan.ADD_CONTAINER, { idx: "can00",  dat:{bit:bit.gphBit.dat.bit }})
 
-  var bit = await window['electronAPI'].openGame()
-  console.log(JSON.stringify(bit))
+  //var bit = await window['electronAPI'].openGame()
+  //console.log(JSON.stringify(bit))
 
-  var bit = await window['electronAPI'].readHexmap('map00')
+  //var bit = await window['electronAPI'].readHexmap('map00')
 
-  var puff = JSON.parse(bit)
+  //var puff = JSON.parse(bit)
 
-  var map = puff.mapBit.dat.grid
-  bit = await SHADE['hunt']( ActHex.WRITE_HEXAGON, { idx:'hex00', dat: { src:'gph00', frm:'hexmap', sze:111, bit:map }  })
+  //var map = puff.mapBit.dat.grid
+  //bit = await SHADE['hunt']( ActHex.WRITE_HEXAGON, { idx:'hex00', dat: { src:'gph00', frm:'hexmap', sze:111, bit:map }  })
 
   return value
 }

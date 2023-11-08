@@ -2,13 +2,14 @@ import { app, ipcMain, dialog, BrowserWindow } from 'electron'
 import path from 'path'
 import os from 'os'
 
-
 // needed in case process is undefined under Linux
 const platform = process.platform || os.platform()
 
 let mainWindow
 
 const MQTT = require('async-mqtt');
+
+const GAME =  require('./game')
 
 //const PLAY = require('../000.play/index.js')
 //const ActPly = require('../000.play/00.play.unit/play.action')
@@ -68,8 +69,13 @@ async function handleFileOpen() {
 
 async function openGame() {
 
+  //GAME.open( SPACE );
+
+  //bit = await SPACE.hunt(ActFoc.WRITE_FOCUS, { foc: 'foc00' })
+  //bit = await SPACE.hunt(ActFoc.WRITE_FOCUS, { foc: 'foc00' })
+
   //var bit = await PLAY.hunt(ActPly.OPEN_PLAY, { val: 0 })
-  return {}
+  return {intBit:{idx:'game-opened'}}
 }
 
 async function shapeHexmap() {
@@ -111,7 +117,7 @@ async function createWindow() {
   })
 
   //mainWindow.setPosition(950, 250);
-  //mainWindow.maximize();
+  mainWindow.maximize();
 
   console.log("in the beginning...")
 
