@@ -20,6 +20,7 @@ const GAME =  require('./game')
 const SPACE = require('../002.space/index.js')
 const ActSpc = require('../002.space/00.space.unit/space.action')
 const ActMap = require('../002.space/03.hexmap.unit/hexmap.action')
+const ActFoc = require('../002.space/01.focus.unit/focus.action')
 
 //const EARTH = require('../011.earth/index.js')
 //const ActErt = require('../011.earth/00.earth.unit/earth.action')
@@ -92,6 +93,16 @@ async function createWindow() {
     bit = await SPACE.hunt(ActMap.READ_HEXMAP, { idx })
     return JSON.stringify(bit)
 
+  })
+
+  ipcMain.handle('space:spinRightFocus', async ( evt, idx) => {
+    bit = await SPACE.hunt(ActFoc.SPIN_RIGHT_FOCUS, { idx })
+    return JSON.stringify(bit)
+  })
+
+  ipcMain.handle('space:spinLeftFocus', async ( evt, idx ) => {
+    bit = await SPACE.hunt(ActFoc.SPIN_LEFT_FOCUS, { idx })
+    return JSON.stringify(bit)
   })
 
   ipcMain.handle('space:readFocus', async (evt, idx) => {
