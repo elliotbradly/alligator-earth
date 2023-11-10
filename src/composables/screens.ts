@@ -36,6 +36,14 @@ export const update = async (value: HelloWorld) => {
 
   bit = await SHADE['hunt']( ActVsg.READ_VISAGE, { idx: "vsg00" })
 
+
+  bit = await SHADE['hunt'](ActCan.WRITE_CONTAINER, { idx: "can00", src: 'vsg00' })
+  var container = bit.canBit.dat.bit
+
+  bit = await SHADE['hunt'](ActCan.SURFACE_CONTAINER, { idx: 'fce-can-00', src: "vsg00" });
+
+  bit = await SHADE['hunt'](ActCan.ADD_CONTAINER, { idx: "fce-can-00", dat: { bit: container } })
+
   bit = await SHADE['hunt'](ActGph.WRITE_GRAPHIC, { idx: 'gph00', dat: { h: 100, w: 40, x: 40, y: 40 } })
   bit = await SHADE['hunt'](ActCan.ADD_CONTAINER, { idx: "can00", dat: { bit: bit.gphBit.dat.bit } })
 
@@ -49,26 +57,24 @@ export const update = async (value: HelloWorld) => {
   var puff = JSON.parse(bit)
 
   var map = puff.mapBit.dat.grid
-  bit = await SHADE['hunt'](ActHex.WRITE_HEXAGON, { idx: 'hex00', dat: { src: 'gph00', frm: 'hexmap', sze: 111, bit: map } })
+  bit = await SHADE['hunt'](ActHex.WRITE_HEXAGON, { idx: 'hex00', dat: { src: 'gph00', frm: 'hexmap', sze: 8, bit: map } })
 
   var bit = await window['electronAPI'].readFocus('foc00')
   var toot = JSON.parse(bit)
 
   toot.focBit.dat.gph = 'gph01'
 
-  bit = await SHADE['hunt'](ActFcg.WRITE_FOCIGON, { idx: 'foc00', dat: { sze: 111, bit: toot.focBit.dat } })
+  bit = await SHADE['hunt'](ActFcg.WRITE_FOCIGON, { idx: 'foc00', dat: { sze: 8,  fce:toot.focBit.dat.face, bit: toot.focBit.dat } })
 
   setInterval(async () => {
 
 
+    console.log("spinnning...")
 
     var bit = await window['electronAPI'].spinRightFocus('foc00')
     var toot = JSON.parse(bit)
 
-    console.log("spinnning..." + toot.focBit.dat.face)
-
-
-    bit = await SHADE['hunt'](ActFcg.WRITE_FOCIGON, { idx: 'foc00', dat: { sze: 111, fce:toot.focBit.dat.face, bit: toot.focBit.dat } })
+    bit = await SHADE['hunt'](ActFcg.WRITE_FOCIGON, { idx: 'foc00', dat: { sze: 8, fce:toot.focBit.dat.face, bit: toot.focBit.dat } })
 
   }, 33)
 

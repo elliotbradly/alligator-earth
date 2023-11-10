@@ -128,7 +128,7 @@ async function createWindow() {
   })
 
   //mainWindow.setPosition(950, 250);
-  mainWindow.maximize();
+  //mainWindow.maximize();
 
   console.log("in the beginning...")
 
