@@ -38,7 +38,7 @@ var init = async ( space ) => {
 
   var idx = 'shape'
 
-  bit = await space.hunt(ActMap.SHAPE_HEXMAP, { idx, dat: { frm: SHAPE.RECTANGLE, w: 33, h:33 } })
+  bit = await space.hunt(ActMap.SHAPE_HEXMAP, { idx, dat: { frm: SHAPE.RECTANGLE, w: 111, h:211 } })
 
   var grid = bit.mapBit.dat.dat.bit;
   bit = await space.hunt(ActMap.WRITE_HEXMAP, { idx:"map00", dat: { bit: { grid } } })

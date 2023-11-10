@@ -76,7 +76,20 @@ export const update = async (value: HelloWorld) => {
 
     bit = await SHADE['hunt'](ActFcg.WRITE_FOCIGON, { idx: 'foc00', dat: { sze: 8, fce:toot.focBit.dat.face, bit: toot.focBit.dat } })
 
-  }, 33)
+  }, 1111)
+
+
+  setInterval(async () => {
+
+
+    console.log("forward...")
+
+    var bit = await window['electronAPI'].forwardFocus('foc00')
+    var toot = JSON.parse(bit)
+
+    bit = await SHADE['hunt'](ActFcg.WRITE_FOCIGON, { idx: 'foc00', dat: { sze: 8, fce:toot.focBit.dat.face, bit: toot.focBit.dat } })
+
+  }, 1333)
 
 
   return value
