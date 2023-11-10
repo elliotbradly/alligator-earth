@@ -2370,6 +2370,8 @@ const hexmapHexagon = async (cpy, bal, ste) => {
     var graphic = bit.gphBit.dat.bit;
     var hexmap = bal.dat.bit;
     graphic.clear();
+    if (bal.slv != null)
+        bal.slv({ hexBit: { idx: "hexmap-hexagon", dat: hexmap } });
     const Hex = Honeycomb.extendHex({
         size: Number(33),
         orientation: 'pointy', // default: 'pointy'
@@ -2388,8 +2390,6 @@ const hexmapHexagon = async (cpy, bal, ste) => {
         otherCorners.forEach(({ x, y }) => graphic.lineTo(x * scl, y * scl * pct));
         graphic.lineTo(firstCorner.x * scl, firstCorner.y * scl * pct);
     });
-    if (bal.slv != null)
-        bal.slv({ hexBit: { idx: "hexmap-hexagon", dat: hexmap } });
     return cpy;
 };
 exports.hexmapHexagon = hexmapHexagon;
@@ -2644,14 +2644,17 @@ const updateFocigon = async (cpy, bal, ste) => {
     var dat = bit.fcgBit.dat;
     bit = await ste.hunt(ActGph.READ_GRAPHIC, { idx: dat.gph });
     var graphic = bit.gphBit.dat.bit;
+    graphic.clear();
     if (graphic == null)
         return console.log("no graphic to draw map upon");
     if (dat.wpe == true)
         graphic.clear();
     graphic.lineStyle(dat.lne, dat.clr, 1);
     graphic.beginFill(dat.clr);
-    var scl = 3;
     var pct = .33;
+    var scl = bal.dat.sze;
+    graphic.lineStyle(7, 0x00FF00, 33);
+    dat.crns;
     const [firstCorner, ...otherCorners] = dat.crns;
     graphic.moveTo(firstCorner.x * scl, firstCorner.y * scl * pct);
     otherCorners.forEach(({ x, y }) => graphic.lineTo(x * scl, y * scl * pct));
@@ -2730,16 +2733,16 @@ exports.removeFocigon = removeFocigon;
 const createFocigon = async (cpy, bal, ste) => {
     var dat = { idx: bal.idx, src: bal.src };
     for (var key in bal.dat) {
-        if (key == 'dat')
+        if (key == 'bit')
             continue;
         dat[key] = bal.dat[key];
     }
-    var focus = bal.dat.dat;
+    var focus = bal.dat.bit;
+    debugger;
     dat.fce = focus.face;
     dat.frm = focus.typ;
     dat.gph = focus.gph;
     dat.crns = focus.corners;
-    //there is the issue no corners
     if (dat.clr == null)
         dat.clr = 0x0000000;
     if (dat.lne == null)
