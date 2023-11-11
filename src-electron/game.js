@@ -38,24 +38,20 @@ var init = async ( space ) => {
 
   var idx = 'shape'
 
-  bit = await space.hunt(ActMap.SHAPE_HEXMAP, { idx, dat: { frm: SHAPE.RECTANGLE, w: 111, h:211 } })
-
+  bit = await space.hunt(ActMap.SHAPE_HEXMAP, { idx, dat: { frm: SHAPE.RECTANGLE, h: 44, w: 8 } })
   var grid = bit.mapBit.dat.dat.bit;
   bit = await space.hunt(ActMap.WRITE_HEXMAP, { idx:"map00", dat: { bit: { grid } } })
 
-  //bit = await space.hunt(ActMap.SHAPE_HEXMAP, { idx, dat: { frm: SHAPE.RECTANGLE, w: 33, h: 33 } })
-  //var grid = bit.mapBit.dat.dat.bit;
-  //bit = await space.hunt(ActMap.WRITE_HEXMAP, { idx:"map01", dat: { bit: { grid } } })
-
-  //bit = await space.hunt(ActMap.SHAPE_HEXMAP, { idx, dat: { frm: SHAPE.RECTANGLE, w: 44, h: 44 } })
-  //var grid = bit.mapBit.dat.dat.bit;
-  //bit = await space.hunt(ActMap.WRITE_HEXMAP, { idx:"map02", dat: { bit: { grid } } })
-
-  //bit = await space.hunt(ActMap.SHAPE_HEXMAP, { idx, dat: { frm: SHAPE.RECTANGLE, w: 55, h: 55 } })
-  //var grid = bit.mapBit.dat.dat.bit;
-  //bit = await space.hunt(ActMap.WRITE_HEXMAP, { idx:"map03", dat: { bit: { grid } } })
-
   bit = await space.hunt(ActFoc.WRITE_FOCUS, { idx: 'foc00', src:'map00', dat: { typ: FOCUS.AVAS } })
+  var avas = bit.focBit.dat
+
+  bit = await space.hunt(ActFoc.SPIN_LEFT_FOCUS, { idx: 'foc00' })
+  var avas = bit.focBit.dat
+
+  bit = await space.hunt(ActFoc.SPIN_LEFT_FOCUS, { idx: 'foc00' })
+  var avas = bit.focBit.dat
+
+  bit = await space.hunt(ActFoc.FORWARD_FOCUS, { idx: 'foc00' })
   var avas = bit.focBit.dat
 
 

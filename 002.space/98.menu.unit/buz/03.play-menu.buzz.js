@@ -18,8 +18,9 @@ const updateFocusPlayMenu = async (cpy, bal, ste) => {
     switch (src) {
         case ActFoc.FORWARD_FOCUS:
             bit = await ste.hunt(ActFoc.FORWARD_FOCUS, { idx: playIDX });
+            var now = bit.focBit.dat;
             bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: bit.focBit.dat.x + ' ::::: ' + bit.focBit.dat.y });
-            //bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: 'y:' + JSON.stringify() })
+            bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: 'corners:' + JSON.stringify(now.corners) });
             break;
         case ActFoc.SPIN_RIGHT_FOCUS:
             bit = await ste.hunt(ActFoc.SPIN_RIGHT_FOCUS, { idx: playIDX });
